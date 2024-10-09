@@ -3,6 +3,6 @@
 
 int main(){
   printf("hola \n");
-  printf("%d", suma(1, 4));
+  printf("%d \n", suma(1, 4));
   return 0;
 }
