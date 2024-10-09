@@ -8,6 +8,10 @@ OBJDIR = obj
 SRCDIR = src
 OBJ = $(OBJDIR)/main.o $(OBJDIR)/funciones.o
 
+# Crear el directorio de objetos si no existe
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
+
 $(TARGET): $(OBJ)
 	$(CC) $(OBJ) -o $(TARGET) $(CFLAGS)
 
