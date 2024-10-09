@@ -1,23 +1,26 @@
-# Makefile
+TARGET = main
 
-# Compilador
 CC = gcc
 
-# Opcion del compilador
-CFLAGS = -Wall -g
+CFLAGS = -Wall -g 
 
-# Archivos objeto
-OBJS = main.o
+OBJDIR = obj
+SRCDIR = src
+OBJ = $(OBJDIR)/main.o $(OBJDIR)/funciones.o
 
-# Nombre del ejecutable
-TARGET = programa
+$(TARGET): $(OBJ)
+	$(CC) $(OBJ) -o $(TARGET) $(CFLAGS)
 
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+# Main
+$(OBJDIR)/main.o: $(SRCDIR)/main.c $(SRCDIR)/funciones.h | $(OBJDIR)
+	$(CC) -c $(SRCDIR)/main.c -o $@ $(CFLAGS)
 
-# Regla para generar main.o
-main.o: main.c
-	$(CC) $(CFLAGS) -c main.c
+# Funciones
+$(OBJDIR)/funciones.o: $(SRCDIR)/funciones.c $(SRCDIR)/funciones.h | $(OBJDIR)
+	$(CC) -c $(SRCDIR)/funciones.c -o $@ $(CFLAGS)
+
+run:
+	./$(TARGET)
 
 clean:
-	del *.o programa.exe
+	rm -f obj/*.o $(TARGET)
