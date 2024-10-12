@@ -6,16 +6,16 @@ CFLAGS = -Wall -g
 
 OBJDIR = obj
 SRCDIR = src
-OBJ = $(OBJDIR)/main.o $(OBJDIR)/funciones.o
+OBJ = $(OBJDIR)/main.o $(OBJDIR)/DFS.o
 
 $(OBJDIR):
 	mkdir -p $(OBJDIR)
 
-$(OBJDIR)/main.o: $(SRCDIR)/main.c $(SRCDIR)/funciones.h | $(OBJDIR)
+$(OBJDIR)/main.o: $(SRCDIR)/main.c $(SRCDIR)/DFS.h | $(OBJDIR)
 	$(CC) -c $(SRCDIR)/main.c -o $@ $(CFLAGS)
 
-$(OBJDIR)/funciones.o: $(SRCDIR)/funciones.c $(SRCDIR)/funciones.h | $(OBJDIR)
-	$(CC) -c $(SRCDIR)/funciones.c -o $@ $(CFLAGS)
+$(OBJDIR)/DFS.o: $(SRCDIR)/DFS.c $(SRCDIR)/DFS.h | $(OBJDIR)
+	$(CC) -c $(SRCDIR)/DFS.c -o $@ $(CFLAGS)
 
 compile: $(OBJ)
 	$(CC) $(OBJ) -o $(TARGET) $(CFLAGS)
