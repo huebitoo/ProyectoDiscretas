@@ -41,7 +41,7 @@ bool vaciaPila(Pila *pila){
 
 // Algoritmo DFS
 
-int DFS(int **grafo, bool *visitados){
+int DFS(int **grafo, bool *visitados, int numero_nodos){
     Pila pila;
 
     constructorPila(&pila);
@@ -49,9 +49,18 @@ int DFS(int **grafo, bool *visitados){
 
     // Mientras no esté vacia la pila
     while(!vaciaPila(&pila)){
-
+        
+        int nodo = quitarElemento(&pila);
+        visitados[nodo] = true;
+        
+        for(int i = 0; grafo[nodo][i] != -1; i++){
+            if(!visitados[grafo[nodo][i]])
+                insertElemento(&pila, grafo[nodo][i]);
+        }
     }
-
-
-
+    
+    for(int i = 0; i < numero_nodos; i++){
+        if(visitados[i] == false) return 0;
+    }
+    return 1;
 }
