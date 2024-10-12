@@ -1,8 +1,10 @@
-#include "funciones.h"
+#include "DFS.h"
 #include <stdio.h>
+#include <stdbool.h>
 
 int main(){
-  printf("hola \n");
-  printf("%d \n", suma(1, 4));
-  return 0;
+    char *ruta_archivo = "./grafo.txt";
+    FILE *archivo = fopen(ruta_archivo, "r");
+    
+
 }
