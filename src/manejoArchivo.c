@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
-#include "manejoArchivo.h"
+#include "../include/manejoArchivo.h"
 
 void obtenerMatriz(int **matriz, char *BUFFER, int indice){
     matriz[indice] = NULL;

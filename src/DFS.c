@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "DFS.h"
+#include "../include/DFS.h"
 #include <stdlib.h>
 #include <stdbool.h>
 

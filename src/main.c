@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include "DFS.h"
-#include "manejoArchivo.h"
+#include "../include/DFS.h"
+#include "../include/manejoArchivo.h"
 
 
 #define MAXBUFFER 1024
