@@ -35,23 +35,16 @@ int main(){
         contador_indice++;
     }
 
-    for(int i = 0; i < numero_nodos; i++){
-        for(int j = 0; matriz[i][j] != -1; j++){
-            printf("vertice %d: %d \n", i + 1, matriz[i][j]);
-        }
-    }
-
     fclose(archivo); // Asegúrate de cerrar el archivo después de leer
 
-    printf("antes del DFS \n");
+    bool visitados[numero_nodos];
+    for(int i = 0; i < numero_nodos; i++) visitados[numero_nodos] = false;
 
-    if(DFS(matriz, numero_nodos)) printf("Grafo conexo \n");
+    if(DFS(matriz, visitados, numero_nodos)) printf("Grafo conexo \n");
     else printf("Grafo no conexo \n");
 
-    // printf("despues del DFS");
-
-    // for(int i = 0; i < numero_nodos; i++){
-    //     free(matriz[i]);
-    // }
-    // free(matriz);
+    for(int i = 0; i < numero_nodos; i++){
+        free(matriz[i]);
+    }
+    free(matriz);
 }

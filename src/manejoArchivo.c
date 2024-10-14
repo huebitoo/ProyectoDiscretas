@@ -25,7 +25,7 @@ void obtenerMatriz(int **matriz, char *BUFFER, int indice){
             matriz[indice] = temp;
             
             int numero = atoi(token);
-            matriz[indice][contador++] = numero;
+            matriz[indice][contador++] = numero - 1;
         } else {
             salto = false;
         }

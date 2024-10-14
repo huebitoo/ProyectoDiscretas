@@ -2,30 +2,36 @@ TARGET = main
 
 CC = gcc
 
-CFLAGS = -Wall -g 
+CFLAGS = -Wall -g -O2
 
 OBJDIR = obj
 SRCDIR = src
 OBJ = $(OBJDIR)/main.o $(OBJDIR)/DFS.o $(OBJDIR)/manejoArchivo.o
 
-$(OBJDIR):
-	mkdir -p $(OBJDIR)
-
 $(OBJDIR)/main.o: $(SRCDIR)/main.c $(SRCDIR)/DFS.h $(SRCDIR)/manejoArchivo.h | $(OBJDIR)
-	$(CC) -c $(SRCDIR)/main.c -o $@ $(CFLAGS)
+	@$(CC) -c $(SRCDIR)/main.c -o $@ $(CFLAGS)
 
 $(OBJDIR)/DFS.o: $(SRCDIR)/DFS.c $(SRCDIR)/DFS.h | $(OBJDIR)
-	$(CC) -c $(SRCDIR)/DFS.c -o $@ $(CFLAGS)
+	@$(CC) -c $(SRCDIR)/DFS.c -o $@ $(CFLAGS)
 
 $(OBJDIR)/manejoArchivo.o: $(SRCDIR)/manejoArchivo.c $(SRCDIR)/manejoArchivo.h | $(OBJDIR)
-	$(CC) -c $(SRCDIR)/manejoArchivo.c -o $@ $(CFLAGS)
+	@$(CC) -c $(SRCDIR)/manejoArchivo.c -o $@ $(CFLAGS)
 
-compile: $(OBJ)
-	$(CC) $(OBJ) -o $(TARGET) $(CFLAGS)
+all: $(TARGET)
+
+$(TARGET): $(OBJ)	| $(OBJDIR)
+	@$(CC) $(OBJ) -o $(TARGET) $(CFLAGS)
+
+$(OBJDIR):
+	@mkdir -p $(OBJDIR)
 
 run: $(TARGET)
-	./$(TARGET)
+	@./$(TARGET)
 
 clean:
-	rm -f $(OBJDIR)/*.o $(TARGET)
+	@rm -rf $(OBJDIR) $(TARGET)
+
+memoria: $(TARGET)
+	@valgrind --leak-check=full --track-origins=yes ./$(TARGET)
+
 

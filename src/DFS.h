@@ -2,4 +2,4 @@
 
 #include <stdbool.h>
 
-int DFS(int **grafo, int numero_nodos);
+int DFS(int **grafo, bool *visitados, int numero_nodos);
