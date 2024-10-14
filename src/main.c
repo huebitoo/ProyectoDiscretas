@@ -1,6 +1,9 @@
-#include "DFS.h"
 #include <stdio.h>
 #include <stdbool.h>
+#include "DFS.h"
+#include "manejoArchivo.h"
+
+
 #define MAXBUFFER 1024
 
 // FLAGS -1
@@ -21,7 +24,7 @@ int main(){
     printf("Numero de nodos: %d \n", numero_nodos);
 
     while(fgets(BUFFER, sizeof(BUFFER), archivo) != NULL){
-        printf("%s\n", BUFFER);
+        obtenerMatriz(BUFFER);
     }
     printf("\n");
 }
