@@ -32,6 +32,10 @@ int main(){
 
     while(fgets(BUFFER, sizeof(BUFFER), archivo) != NULL && contador_indice < numero_nodos){
         obtenerMatriz(matriz, BUFFER, contador_indice);
+        // if(matriz[contador_indice] == NULL){
+        //     matriz[contador_indice] = realloc(matriz[contador_indice], 1 * sizeof(int));
+        //     matriz[contador_indice][0] = -1;
+        // }
         contador_indice++;
     }
 
@@ -39,6 +43,13 @@ int main(){
 
     bool visitados[numero_nodos];
     for(int i = 0; i < numero_nodos; i++) visitados[numero_nodos] = false;
+    
+    // printf("numero de nodos: %d\n", numero_nodos);
+    // for(int i = 0; i < numero_nodos; i++){
+    //     for(int j = 0; matriz[i][j] != -1; j++){
+    //         printf("Vertice %d, vecino %d\n", i, matriz[i][j]);
+    //     }
+    // }
 
     if(DFS(matriz, visitados, numero_nodos)) printf("Grafo conexo \n");
     else printf("Grafo no conexo \n");
