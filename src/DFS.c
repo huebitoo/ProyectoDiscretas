@@ -41,8 +41,12 @@ bool vaciaPila(Pila *pila){
 
 // Algoritmo DFS
 
-int DFS(int **grafo, bool *visitados, int numero_nodos){
+int DFS(int **grafo, int numero_nodos){
     Pila pila;
+
+    bool visitados[numero_nodos];
+    for(int i = 0; i < numero_nodos; i++)
+        visitados[i] = false;
 
     constructorPila(&pila);
     insertElemento(&pila, 0);
