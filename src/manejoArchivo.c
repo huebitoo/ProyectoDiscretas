@@ -26,6 +26,7 @@ void obtenerMatriz(int **matriz, char *BUFFER, int indice){
             
             int numero = atoi(token);
             matriz[indice][contador++] = numero - 1;
+            // printf("VERTICE VECINO: %d\n", matriz[indice][contador - 1]);
         } else {
             salto = false;
         }
@@ -36,4 +37,13 @@ void obtenerMatriz(int **matriz, char *BUFFER, int indice){
     // Para finalizar, agregar -1 al final de la lista de adyacencias
     matriz[indice] = realloc(matriz[indice], (contador + 1) * sizeof(int)); // +1 para el -1
     matriz[indice][contador] = -1; // Marcador de fin de lista
+}
+
+int extraerNumeroNodos(FILE *archivo){
+    int aux;
+    if(!fscanf(archivo, "%d", &aux)){
+        printf("Numero de nodos invalidos");
+        fclose(archivo);
+    }
+    return aux;
 }

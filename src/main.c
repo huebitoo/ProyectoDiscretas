@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include "../include/DFS.h"
 #include "../include/manejoArchivo.h"
+#include "../include/validaciones.h"
+#include "../include/freeMemoria.h"
 
 
 #define MAXBUFFER 1024
@@ -10,17 +12,15 @@
 // FLAGS -1
 
 int main(){
+    // Extraer datos importantes e inicializacion de variables
     char *ruta_archivo = "./grafo.txt";
     FILE *archivo = fopen(ruta_archivo, "r");
     char BUFFER[MAXBUFFER];
     int numero_nodos, contador_indice = 0; 
+    
+    // Extraer numero de nodos
+    numero_nodos = extraerNumeroNodos(archivo);
 
-    // Cantidad de nodos se guarda en numero_nodos
-    if(!fscanf(archivo, "%d", &numero_nodos)){
-        printf("Numero de nodos invalidos");
-        fclose(archivo);
-        return EXIT_FAILURE;
-    }
     // Saltar el primer numero
     fgets(BUFFER, sizeof(BUFFER), archivo);
         
@@ -30,32 +30,32 @@ int main(){
         matriz[i] = NULL;
     }
 
+    // Obtener la matriz
     while(fgets(BUFFER, sizeof(BUFFER), archivo) != NULL && contador_indice < numero_nodos){
-        obtenerMatriz(matriz, BUFFER, contador_indice);
-        // if(matriz[contador_indice] == NULL){
-        //     matriz[contador_indice] = realloc(matriz[contador_indice], 1 * sizeof(int));
-        //     matriz[contador_indice][0] = -1;
-        // }
-        contador_indice++;
+        obtenerMatriz(matriz, BUFFER, contador_indice++);
     }
 
-    fclose(archivo); // Asegúrate de cerrar el archivo después de leer
+    // Cerrar el archivo
+    fclose(archivo); 
 
-    bool visitados[numero_nodos];
-    for(int i = 0; i < numero_nodos; i++) visitados[numero_nodos] = false;
+    // Validar que no hayan vertices aislados
+    if(conexidadSimple(matriz, numero_nodos)){
+        
+        // Validacion de si el grafo es valido
+        if(vecinosValidos(matriz, numero_nodos)){
+            
+            // Rellenar los visitados
+            bool visitados[numero_nodos];
+            for(int i = 0; i < numero_nodos; i++) visitados[numero_nodos] = false;
+
+            // Validación de si es conexo
+            if(DFS(matriz, visitados, numero_nodos)) printf("Grafo conexo \n");
+            else printf("Grafo no conexo \n");
+        }
+        else printf("Vecinos no validos\n");
+    } 
+    else printf("Grafo no conexo\n");
     
-    // printf("numero de nodos: %d\n", numero_nodos);
-    // for(int i = 0; i < numero_nodos; i++){
-    //     for(int j = 0; matriz[i][j] != -1; j++){
-    //         printf("Vertice %d, vecino %d\n", i, matriz[i][j]);
-    //     }
-    // }
-
-    if(DFS(matriz, visitados, numero_nodos)) printf("Grafo conexo \n");
-    else printf("Grafo no conexo \n");
-
-    for(int i = 0; i < numero_nodos; i++){
-        free(matriz[i]);
-    }
-    free(matriz);
+    // Liberación de memoria
+    liberarMemoria(matriz, numero_nodos);
 }
