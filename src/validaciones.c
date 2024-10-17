@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include "../include/validaciones.h"
 
-bool conexidadSimple(int **grafo, int numero_nodos){
+bool conexidadSimple(int **grafo, const int numero_nodos){
     int contador;
     for(int i = 0; i < numero_nodos; i++){
         contador = 0;
@@ -14,7 +14,7 @@ bool conexidadSimple(int **grafo, int numero_nodos){
     return true;
 }
 
-bool vecinosValidos(int **grafo, int numero_nodos){
+bool vecinosValidos(int **grafo, const int numero_nodos){
     int contador;
     for(int i = 0; i < numero_nodos; i++){
         contador = 0;

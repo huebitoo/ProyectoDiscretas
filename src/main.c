@@ -5,6 +5,7 @@
 #include "../include/manejoArchivo.h"
 #include "../include/validaciones.h"
 #include "../include/freeMemoria.h"
+#include "../include/grados.h"
 
 
 #define MAXBUFFER 1024
@@ -51,6 +52,9 @@ int main(){
             // Validación de si es conexo
             if(DFS(matriz, visitados, numero_nodos)) printf("Grafo conexo \n");
             else printf("Grafo no conexo \n");
+
+            printf("Grado max: %d \n", gradoMax(matriz, numero_nodos));
+            printf("Grado min: %d \n", gradoMin(matriz, numero_nodos));
         }
         else printf("Vecinos no validos\n");
     } 

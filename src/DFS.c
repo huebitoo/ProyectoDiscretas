@@ -40,7 +40,6 @@ bool vaciaPila(Pila *pila){
 }
 
 // Algoritmo DFS
-
 int DFS(int **grafo, bool *visitados,int numero_nodos){
     Pila pila;
 

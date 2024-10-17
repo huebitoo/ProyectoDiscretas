@@ -27,9 +27,7 @@ void obtenerMatriz(int **matriz, char *BUFFER, int indice){
             int numero = atoi(token);
             matriz[indice][contador++] = numero - 1;
             // printf("VERTICE VECINO: %d\n", matriz[indice][contador - 1]);
-        } else {
-            salto = false;
-        }
+        } else salto = false;
         
         token = strtok(NULL, ",: ");
     }
