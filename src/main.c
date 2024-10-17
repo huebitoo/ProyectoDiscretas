@@ -24,7 +24,7 @@ int main(){
     char *ruta_archivo = "./grafo.txt";
     FILE *archivo = fopen(ruta_archivo, "r");
     char BUFFER[MAXBUFFER];
-    int numero_nodos, contador_indice = 0; 
+    int numero_nodos, contador_indice = 0, operacion, conexidad; 
     
     // Extraer numero de nodos
     numero_nodos = extraerNumeroNodos(archivo);
@@ -43,32 +43,67 @@ int main(){
         obtenerMatriz(matriz, BUFFER, contador_indice++);
     }
 
+    // Rellenar los visitados
+    bool visitados[numero_nodos];
+    for(int i = 0; i < numero_nodos; i++) visitados[numero_nodos] = false;
+
     // Cerrar el archivo
     fclose(archivo); 
 
-    // Validar que no hayan vertices aislados
-    if(conexidadSimple(matriz, numero_nodos)){
-        
-        // Validacion de si el grafo es valido
-        if(vecinosValidos(matriz, numero_nodos)){
+    // Inicio menú con las selecciones
+    while(1){
+        printf(BLUE "\t\tMATRIZ\n" RESETCOLOR);
+        printf(YELLOW "(1) Conexidad\n" RESETCOLOR);
+        printf(YELLOW "(2) Grado máximo y minimo\n" RESETCOLOR);
+        printf(YELLOW "(3) K-conexidad del grafo\n" RESETCOLOR);
+        printf(YELLOW "(4) Ingresar grafo\n" RESETCOLOR);
+        printf(YELLOW "(5) Salir\n\n" RESETCOLOR);
+        printf(YELLOW "Ingrese operación: " RESETCOLOR);
+        scanf("%d", &operacion);
+
+        system("clear");
+
+        switch(operacion){
+            case 1:
+                if(conexidadSimple(matriz, numero_nodos)){
+                    if(DFS(matriz, visitados, numero_nodos)){
+                        printf(BLUE "Grafo conexo \n\n\n" RESETCOLOR);
+                        break;
+                    }
+                }
+                else printf(RED "Grafo no conexo \n\n\n" RESETCOLOR);
+                break;
+
+            case 2:
+                printf(YELLOW "Grado max:" GREEN "%d \n" RESETCOLOR, gradoMax(matriz, numero_nodos));
+                printf(YELLOW "Grado min:" GREEN "%d \n\n\n" RESETCOLOR, gradoMin(matriz, numero_nodos));
+                break;
             
-            // Rellenar los visitados
-            bool visitados[numero_nodos];
-            for(int i = 0; i < numero_nodos; i++) visitados[numero_nodos] = false;
+            case 3:
+                if(conexidadSimple(matriz, numero_nodos)){
+                    if(kConexidad(matriz, numero_nodos, visitados, &conexidad)){
+                        printf(YELLOW "El grafo es " BLUE "%d-conexo\n\n\n" RESETCOLOR, conexidad);
+                        break;
+                    }
+                    printf(YELLOW "El grafo es " BLUE "%d-conexo\n\n\n" RESETCOLOR, conexidad);
+                    break;
+                }
+                else printf(RED "Grafo  0-conexo \n\n\n" RESETCOLOR);
+                break;
+            
+            case 4:
+                printf("En proceso... \n\n\n");
+                break;
+            
+            case 5:
+                return 0;
 
-            // Validación de si es conexo
-            if(DFS(matriz, visitados, numero_nodos)) printf(BLUE "Grafo conexo \n" RESETCOLOR);
-            else printf(RED "Grafo no conexo \n" RESETCOLOR);
-
-            printf(YELLOW "Grado max: %d \n" RESETCOLOR, gradoMax(matriz, numero_nodos));
-            printf(YELLOW "Grado min: %d \n" RESETCOLOR, gradoMin(matriz, numero_nodos));
-
-            kConexidad(matriz, numero_nodos, visitados);
-
+            default:
+                printf(RED "¡Número invalido, por favor reingrese!" RESETCOLOR);
+                break;
         }
-        else printf(RED "Vecinos no validos\n" RESETCOLOR);
-    } 
-    else printf(RED "Grafo no conexo\n" RESETCOLOR);
+
+    }
     
     // Liberación de memoria
     liberarMemoria(matriz, numero_nodos);

@@ -9,7 +9,7 @@
 #define YELLOW  "\033[33m"  // Amarillo
 #define BLUE    "\033[34m"  // Azul
 
-int kConexidad(int **grafo, const int numero_nodos, bool *visitados);
+int kConexidad(int **grafo, const int numero_nodos, bool *visitados, int *conexidad);
 
 bool modificarVisitados(bool *visitados, int primer_indice, int segundo_indice, int tercer_indice, int cuarto_indice, int *conexidad);
 
