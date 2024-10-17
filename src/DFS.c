@@ -3,13 +3,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-// Struct vector
-struct {
-    int indice; // Ultimo elemento
-    int tamaño_vector;
-    int *vector; // Pila
-} typedef Pila;
-
 // Constructor Pila
 void constructorPila(Pila *pila){
     pila->indice = -1;
@@ -40,7 +33,7 @@ bool vaciaPila(Pila *pila){
 }
 
 // Algoritmo DFS
-int DFS(int **grafo, bool *visitados,int numero_nodos){
+int DFS(int **grafo, bool *visitados, int numero_nodos){
     Pila pila;
 
     constructorPila(&pila);

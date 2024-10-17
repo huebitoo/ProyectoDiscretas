@@ -6,6 +6,13 @@
 #include "../include/validaciones.h"
 #include "../include/freeMemoria.h"
 #include "../include/grados.h"
+#include "../include/k-conexo.h"
+
+#define RESETCOLOR   "\033[0m"   // Restablece el color
+#define RED     "\033[31m"  // Rojo
+#define GREEN   "\033[32m"  // Verde
+#define YELLOW  "\033[33m"  // Amarillo
+#define BLUE    "\033[34m"  // Azul
 
 
 #define MAXBUFFER 1024
@@ -50,15 +57,18 @@ int main(){
             for(int i = 0; i < numero_nodos; i++) visitados[numero_nodos] = false;
 
             // Validación de si es conexo
-            if(DFS(matriz, visitados, numero_nodos)) printf("Grafo conexo \n");
-            else printf("Grafo no conexo \n");
+            if(DFS(matriz, visitados, numero_nodos)) printf(BLUE "Grafo conexo \n" RESETCOLOR);
+            else printf(RED "Grafo no conexo \n" RESETCOLOR);
 
-            printf("Grado max: %d \n", gradoMax(matriz, numero_nodos));
-            printf("Grado min: %d \n", gradoMin(matriz, numero_nodos));
+            printf(YELLOW "Grado max: %d \n" RESETCOLOR, gradoMax(matriz, numero_nodos));
+            printf(YELLOW "Grado min: %d \n" RESETCOLOR, gradoMin(matriz, numero_nodos));
+
+            kConexidad(matriz, numero_nodos, visitados);
+
         }
-        else printf("Vecinos no validos\n");
+        else printf(RED "Vecinos no validos\n" RESETCOLOR);
     } 
-    else printf("Grafo no conexo\n");
+    else printf(RED "Grafo no conexo\n" RESETCOLOR);
     
     // Liberación de memoria
     liberarMemoria(matriz, numero_nodos);
