@@ -8,6 +8,7 @@
 #include "../include/freeMemoria.h"
 #include "../include/grados.h"
 #include "../include/k-conexo.h"
+#include "../include/prepararDatos.h"
 
 #define RESETCOLOR   "\033[0m"   // Restablece el color
 #define RED     "\033[31m"  // Rojo
@@ -21,8 +22,8 @@
 int main(){
     // Extraer datos importantes e inicializacion de variables
     char ruta_prearchivo[MAXBUFFER], ruta_archivo[MAXBUFFER] = "./";
-    char BUFFER[MAXBUFFER];
-    int numero_nodos, contador_indice = 0, operacion, conexidad; 
+    int numero_nodos, operacion, conexidad, **matriz = NULL; 
+    bool *visitados = NULL;
 
     // Solicitar archivo
     solicitarArchivo(ruta_prearchivo);
@@ -30,32 +31,8 @@ int main(){
     // Concatenar
     strcat(ruta_archivo, ruta_prearchivo);
 
-    // Despues de leere el archivo
-    FILE *archivo = fopen(ruta_archivo, "r");
-    
-    // Extraer numero de nodos
-    numero_nodos = extraerNumeroNodos(archivo);
-
-    // Saltar el primer numero
-    fgets(BUFFER, sizeof(BUFFER), archivo);
-        
-    // Declaracion con memoria dinamica
-    int **matriz = malloc(numero_nodos * sizeof(int *));
-    for(int i = 0; i < numero_nodos; i++){
-        matriz[i] = NULL;
-    }
-
-    // Obtener la matriz
-    while(fgets(BUFFER, sizeof(BUFFER), archivo) != NULL && contador_indice < numero_nodos){
-        obtenerMatriz(matriz, BUFFER, contador_indice++);
-    }
-
-    // Rellenar los visitados
-    bool visitados[numero_nodos];
-    for(int i = 0; i < numero_nodos; i++) visitados[numero_nodos] = false;
-
-    // Cerrar el archivo
-    fclose(archivo); 
+    // Manejar datos antes de ser usados
+    prepararValoresIniciales(&visitados, &numero_nodos, ruta_archivo, &matriz);
 
     // Inicio menú con las selecciones
     while(1){
@@ -107,6 +84,9 @@ int main(){
 
                 // Concatenar
                 strcat(ruta_archivo, ruta_prearchivo);
+
+                // Preparar
+                prepararValoresIniciales(&visitados, &numero_nodos, ruta_archivo, &matriz);
 
                 break;
             
