@@ -45,3 +45,18 @@ int extraerNumeroNodos(FILE *archivo){
     }
     return aux;
 }
+
+void insertarArchivo(char ruta_archivo[]){
+    printf(YELLOW "Ingrese ruta archivo: " RESETCOLOR);
+    scanf("%99s", ruta_archivo);
+    return;
+}
+
+void solicitarArchivo(char ruta_archivo[]){
+    bool insertar_archivo = false;
+    while(!insertar_archivo){
+        insertarArchivo(ruta_archivo);
+        if(ruta_archivo != NULL) insertar_archivo = true;  
+    }
+    return;
+}

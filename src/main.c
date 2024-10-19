@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <string.h>
 #include "../include/DFS.h"
 #include "../include/manejoArchivo.h"
 #include "../include/validaciones.h"
@@ -17,14 +18,20 @@
 
 #define MAXBUFFER 1024
 
-// FLAGS -1
-
 int main(){
     // Extraer datos importantes e inicializacion de variables
-    char *ruta_archivo = "./grafo.txt";
-    FILE *archivo = fopen(ruta_archivo, "r");
+    char ruta_prearchivo[MAXBUFFER], ruta_archivo[MAXBUFFER] = "./";
     char BUFFER[MAXBUFFER];
     int numero_nodos, contador_indice = 0, operacion, conexidad; 
+
+    // Solicitar archivo
+    solicitarArchivo(ruta_prearchivo);
+    
+    // Concatenar
+    strcat(ruta_archivo, ruta_prearchivo);
+
+    // Despues de leere el archivo
+    FILE *archivo = fopen(ruta_archivo, "r");
     
     // Extraer numero de nodos
     numero_nodos = extraerNumeroNodos(archivo);
@@ -71,12 +78,12 @@ int main(){
                         break;
                     }
                 }
-                else printf(RED "Grafo no conexo \n\n\n" RESETCOLOR);
+                printf(RED "Grafo no conexo \n\n\n" RESETCOLOR);
                 break;
 
             case 2:
-                printf(YELLOW "Grado max:" GREEN "%d \n" RESETCOLOR, gradoMax(matriz, numero_nodos));
-                printf(YELLOW "Grado min:" GREEN "%d \n\n\n" RESETCOLOR, gradoMin(matriz, numero_nodos));
+                printf(YELLOW "Grado max:" GREEN " %d \n" RESETCOLOR, gradoMax(matriz, numero_nodos));
+                printf(YELLOW "Grado min:" GREEN " %d \n\n\n" RESETCOLOR, gradoMin(matriz, numero_nodos));
                 break;
             
             case 3:
@@ -92,7 +99,15 @@ int main(){
                 break;
             
             case 4:
-                printf("En proceso... \n\n\n");
+                char ruta_prearchivo[MAXBUFFER] = "";
+                char ruta_archivo[MAXBUFFER] = "./";
+
+                // Solicitar archivo
+                solicitarArchivo(ruta_prearchivo);
+
+                // Concatenar
+                strcat(ruta_archivo, ruta_prearchivo);
+
                 break;
             
             case 5:
