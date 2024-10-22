@@ -7,7 +7,7 @@
 #define RED     "\033[31m"  // Rojo
 #define GREEN   "\033[32m"  // Verde
 #define YELLOW  "\033[33m"  // Amarillo
-#define BLUE    "\033[34m"  // Azul
+#define BLUE    "\033[34m"  // Azul 
 
 int kConexidad(int **grafo, const int numero_nodos, bool *visitados, int *conexidad);
 

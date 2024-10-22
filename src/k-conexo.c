@@ -5,9 +5,14 @@
 #include "../include/DFS.h"
 #include "../include/k-conexo.h"
 
-
-
-// Tiene que ser hasta 4 conexo
+/**
+ * @brief Metodo para analizar la k-conexidad de la lista de adyacencia
+ * @param grafo Lista de adyacencia
+ * @param numero_nodos Numero de nodos
+ * @param visitados Lista con los nodos visitados
+ * @param conexidad Indica la k-conexidad
+ * @return Retorna 0 si es k-conexo, en caso contrario retorna 1
+ */
 int kConexidad(int **grafo, const int numero_nodos, bool *visitados, int *conexidad){
     *conexidad = 0;
     cambiarVisitados(visitados, numero_nodos);
@@ -30,10 +35,20 @@ int kConexidad(int **grafo, const int numero_nodos, bool *visitados, int *conexi
             }
         }
     }
-    *conexidad = 4;
+    *conexidad = (4 > numero_nodos) ? numero_nodos : 4;
     return 0;    
 }
 
+/**
+ * @brief Valida las combinaciones posibles de eliminar nodos
+ * @param visitados Lista de visitados
+ * @param primer_indice Primer indice
+ * @param segundo_indice Segundo indice
+ * @param tercer_indice Tercer indice
+ * @param cuarto_indice Cuarto indice
+ * @param conexidad Indica la conexidad
+ * @return Retorna true si es posible al combinacion y false si no lo es
+ */
 bool modificarVisitados(bool *visitados, int primer_indice, int segundo_indice, int tercer_indice, int cuarto_indice, int *conexidad){
     if(primer_indice == 0){
         if(segundo_indice == 0){

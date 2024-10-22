@@ -102,4 +102,5 @@ int main(){
     
     // Liberación de memoria
     liberarMemoria(matriz, numero_nodos);
+    liberarMemoriaVisitados(visitados);
 }

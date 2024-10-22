@@ -3,14 +3,22 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-// Constructor Pila
+/** 
+ * @brief Constructor de la pila
+ * @param pila Pila para el DFS 
+ */
 void constructorPila(Pila *pila){
     pila->indice = -1;
     pila->tamaño_vector = 0;
     pila->vector = NULL;
 }
 
-// Metodo insertar a la pila
+/**
+ * @brief Inserta un elemento a la Pila
+ * @param pila Pila que usaremos
+ * @param numero Numero que insertaremos en la pila
+ * @return Retorna 0 si se inserto con exito, 0 en caso contrario
+ */
 int insertElemento(Pila *pila, int numero){
     if(pila->indice == pila->tamaño_vector - 1) 
         pila->vector = (int*) realloc(pila->vector, (++pila->tamaño_vector) * sizeof(int));
@@ -22,17 +30,31 @@ int insertElemento(Pila *pila, int numero){
     else return 1;
 }
 
-// Retorna ultimo valor y decrementa el indice. Indice -1 = lista vacia
+/**
+ * @brief Quita un elemento de la pila
+ * @param pila Pila a la que le quitaremos un elemento
+ * @return Retorna el numero que sacamos 
+ */
 int quitarElemento(Pila *pila){
     return pila->vector[pila->indice--];
 }
 
-// Pila vacía
+/**
+ * @brief Verifica si la pila está vacia
+ * @param pila Pila donde verificaremos esto
+ * @return retorna si la pila está vacia o no
+ */
 bool vaciaPila(Pila *pila){
     return pila->indice == -1;
 }
 
-// Algoritmo DFS
+/**
+ * @brief Algoritmo de busqueda profunda en grafos (DFS) y verificar conexidad
+ * @param grafo Es la lista de adyacencia o matriz de adyacencia
+ * @param visitados Es un array con todos los nodos que luego marcaremos como visitados
+ * @param numero_nodos Indica el numero de nodos
+ * @return Retorna 1 si el grafo es conexo, en caso contrario retorna 0
+ */
 int DFS(int **grafo, bool *visitados, int numero_nodos){
     Pila pila;
 
