@@ -4,10 +4,10 @@ CC = gcc
 
 CFLAGS = -Wall -g -O2
 
-OBJDIR = obj
+OBJDIR = build
 SRCDIR = src
 INCLDIR = include
-OBJ = $(OBJDIR)/main.o $(OBJDIR)/DFS.o $(OBJDIR)/manejoArchivo.o $(OBJDIR)/validaciones.o $(OBJDIR)/freeMemoria.o $(OBJDIR)/grados.o $(OBJDIR)/k-conexo.o $(OBJDIR)/prepararDatos.o
+OBJ = $(OBJDIR)/main.o $(OBJDIR)/DFS.o $(OBJDIR)/manejoArchivo.o $(OBJDIR)/validaciones.o $(OBJDIR)/freeMemoria.o $(OBJDIR)/grados.o $(OBJDIR)/k-conexo.o $(OBJDIR)/prepararDatos.o $(OBJDIR)/mostrargrafo.o
 
 $(OBJDIR)/main.o: $(SRCDIR)/main.c $(INCLDIR)/DFS.h $(INCLDIR)/manejoArchivo.h $(INCLDIR)/colores.h	| $(OBJDIR)
 	@$(CC) -c $(SRCDIR)/main.c -o $@ $(CFLAGS)
@@ -32,6 +32,11 @@ $(OBJDIR)/k-conexo.o: $(SRCDIR)/k-conexo.c $(INCLDIR)/k-conexo.h $(INCLDIR)/colo
 
 $(OBJDIR)/prepararDatos.o: $(SRCDIR)/prepararDatos.c $(INCLDIR)/prepararDatos.h $(INCLDIR)/manejoArchivo.h	| $(OBJDIR)
 	@$(CC) -c $(SRCDIR)/prepararDatos.c -o $@ $(CFLAGS)
+
+$(OBJDIR)/mostrargrafo.o: $(SRCDIR)/mostrargrafo.c $(INCLDIR)/mostrargrafo.h $(INCLDIR)/colores.h
+	@$(CC) -c $(SRCDIR)/mostrargrafo.c -o $@ $(CFLAGS)
+
+
 
 
 all: $(TARGET)

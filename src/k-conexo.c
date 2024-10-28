@@ -35,7 +35,7 @@ int kConexidad(int **grafo, const int numero_nodos, bool *visitados, int *conexi
             }
         }
     }
-    *conexidad = (4 > numero_nodos) ? numero_nodos : 4;
+    *conexidad = (4 > numero_nodos) ? numero_nodos - 1 : 4;
     return 0;    
 }
 

@@ -10,6 +10,7 @@
 #include "../include/k-conexo.h"
 #include "../include/prepararDatos.h"
 #include "../include/colores.h"
+#include "../include/mostrargrafo.h"
 
 
 #define MAXBUFFER 1024
@@ -36,7 +37,8 @@ int main(){
         printf(YELLOW "(2) Grado máximo y minimo\n" RESETCOLOR);
         printf(YELLOW "(3) K-conexidad del grafo\n" RESETCOLOR);
         printf(YELLOW "(4) Ingresar grafo\n" RESETCOLOR);
-        printf(YELLOW "(5) Salir\n\n" RESETCOLOR);
+        printf(YELLOW "(5) Mostrar grafo\n\n" RESETCOLOR);
+        printf(YELLOW "(6) Salir\n\n" RESETCOLOR);
         printf(YELLOW "Ingrese operación: " RESETCOLOR);
         scanf("%d", &operacion);
 
@@ -86,6 +88,10 @@ int main(){
                 break;
             
             case 5:
+                printf(YELLOW "En desarrollo..." RESETCOLOR);
+                break;
+
+            case 6:
                 return 0;
 
             default:
