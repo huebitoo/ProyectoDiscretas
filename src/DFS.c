@@ -3,10 +3,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-/** 
- * @brief Constructor de la pila
- * @param pila Pila para el DFS 
- */
+
 void constructorPila(Pila *pila){
     pila->indice = -1;
     pila->tamaño_vector = 0;

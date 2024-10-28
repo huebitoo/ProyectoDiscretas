@@ -9,7 +9,7 @@ SRCDIR = src
 INCLDIR = include
 OBJ = $(OBJDIR)/main.o $(OBJDIR)/DFS.o $(OBJDIR)/manejoArchivo.o $(OBJDIR)/validaciones.o $(OBJDIR)/freeMemoria.o $(OBJDIR)/grados.o $(OBJDIR)/k-conexo.o $(OBJDIR)/prepararDatos.o
 
-$(OBJDIR)/main.o: $(SRCDIR)/main.c $(INCLDIR)/DFS.h $(INCLDIR)/manejoArchivo.h	| $(OBJDIR)
+$(OBJDIR)/main.o: $(SRCDIR)/main.c $(INCLDIR)/DFS.h $(INCLDIR)/manejoArchivo.h $(INCLDIR)/colores.h	| $(OBJDIR)
 	@$(CC) -c $(SRCDIR)/main.c -o $@ $(CFLAGS)
 
 $(OBJDIR)/DFS.o: $(SRCDIR)/DFS.c $(INCLDIR)/DFS.h | $(OBJDIR)
@@ -27,7 +27,7 @@ $(OBJDIR)/freeMemoria.o: $(SRCDIR)/freeMemoria.c $(INCLDIR)/freeMemoria.h	| $(OB
 $(OBJDIR)/grados.o: $(SRCDIR)/grados.c $(INCLDIR)/grados.h	| $(OBJDIR)
 	@$(CC) -c $(SRCDIR)/grados.c -o $@ $(CFLAGS)
 
-$(OBJDIR)/k-conexo.o: $(SRCDIR)/k-conexo.c $(INCLDIR)/k-conexo.h	| $(OBJDIR)
+$(OBJDIR)/k-conexo.o: $(SRCDIR)/k-conexo.c $(INCLDIR)/k-conexo.h $(INCLDIR)/colores.h	| $(OBJDIR)
 	@$(CC) -c $(SRCDIR)/k-conexo.c -o $@ $(CFLAGS)
 
 $(OBJDIR)/prepararDatos.o: $(SRCDIR)/prepararDatos.c $(INCLDIR)/prepararDatos.h $(INCLDIR)/manejoArchivo.h	| $(OBJDIR)
