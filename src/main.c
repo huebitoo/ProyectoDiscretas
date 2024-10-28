@@ -17,7 +17,7 @@
 
 int main(){
     // Extraer datos importantes e inicializacion de variables
-    char ruta_prearchivo[MAXBUFFER], ruta_archivo[MAXBUFFER] = "./";
+    char ruta_prearchivo[MAXBUFFER], ruta_archivo[MAXBUFFER] = "./grafos/";
     int numero_nodos, operacion, conexidad, **matriz = NULL; 
     bool *visitados = NULL;
 
@@ -33,11 +33,11 @@ int main(){
     // Inicio menú con las selecciones
     while(1){
         printf(BLUE "\t\tMATRIZ\n" RESETCOLOR);
-        printf(YELLOW "(1) Conexidad\n" RESETCOLOR);
-        printf(YELLOW "(2) Grado máximo y minimo\n" RESETCOLOR);
-        printf(YELLOW "(3) K-conexidad del grafo\n" RESETCOLOR);
-        printf(YELLOW "(4) Ingresar grafo\n" RESETCOLOR);
-        printf(YELLOW "(5) Mostrar grafo\n\n" RESETCOLOR);
+        printf(YELLOW "(1) Mostrar grafo\n" RESETCOLOR);
+        printf(YELLOW "(2) Conexidad\n" RESETCOLOR);
+        printf(YELLOW "(3) Grado máximo y minimo\n" RESETCOLOR);
+        printf(YELLOW "(4) K-conexidad del grafo\n" RESETCOLOR);
+        printf(YELLOW "(5) Ingresar grafo\n" RESETCOLOR);
         printf(YELLOW "(6) Salir\n\n" RESETCOLOR);
         printf(YELLOW "Ingrese operación: " RESETCOLOR);
         scanf("%d", &operacion);
@@ -46,6 +46,10 @@ int main(){
 
         switch(operacion){
             case 1:
+                mostrarGrafo(matriz, numero_nodos);
+                break;
+
+            case 2:
                 if(conexidadSimple(matriz, numero_nodos)){
                     if(DFS(matriz, visitados, numero_nodos)){
                         printf(BLUE "Grafo conexo \n\n\n" RESETCOLOR);
@@ -54,13 +58,13 @@ int main(){
                 }
                 printf(RED "Grafo no conexo \n\n\n" RESETCOLOR);
                 break;
-
-            case 2:
+            
+            case 3:
                 printf(YELLOW "Grado max:" GREEN " %d \n" RESETCOLOR, gradoMax(matriz, numero_nodos));
                 printf(YELLOW "Grado min:" GREEN " %d \n\n\n" RESETCOLOR, gradoMin(matriz, numero_nodos));
                 break;
-            
-            case 3:
+                
+            case 4:
                 if(conexidadSimple(matriz, numero_nodos)){
                     if(kConexidad(matriz, numero_nodos, visitados, &conexidad)){
                         printf(YELLOW "El grafo es " BLUE "%d-conexo\n\n\n" RESETCOLOR, conexidad);
@@ -72,9 +76,9 @@ int main(){
                 else printf(RED "Grafo  0-conexo \n\n\n" RESETCOLOR);
                 break;
             
-            case 4:
+            case 5:
                 char ruta_prearchivo[MAXBUFFER] = "";
-                char ruta_archivo[MAXBUFFER] = "./";
+                char ruta_archivo[MAXBUFFER] = "./grafos/";
 
                 // Solicitar archivo
                 solicitarArchivo(ruta_prearchivo);
@@ -85,10 +89,6 @@ int main(){
                 // Preparar
                 prepararValoresIniciales(&visitados, &numero_nodos, ruta_archivo, &matriz);
 
-                break;
-            
-            case 5:
-                printf(YELLOW "En desarrollo..." RESETCOLOR);
                 break;
 
             case 6:
