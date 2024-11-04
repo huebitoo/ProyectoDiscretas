@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "../include/DFS.h"
 #include "../include/manejoArchivo.h"
 #include "../include/validaciones.h"
@@ -11,6 +12,7 @@
 #include "../include/prepararDatos.h"
 #include "../include/colores.h"
 #include "../include/mostrargrafo.h"
+
 
 
 #define MAXBUFFER 1024
@@ -24,6 +26,8 @@ int main(){
     // Solicitar archivo
     solicitarArchivo(ruta_prearchivo);
     
+    system("clear");
+
     // Concatenar
     strcat(ruta_archivo, ruta_prearchivo);
 
@@ -65,15 +69,40 @@ int main(){
                 break;
                 
             case 4:
+                // Medición de tiempo 
+                clock_t start, end;
+                // Inicio tiempo
+                start = clock();
+
                 if(conexidadSimple(matriz, numero_nodos)){
-                    if(kConexidad(matriz, numero_nodos, visitados, &conexidad)){
+                    if(DFS(matriz, visitados, numero_nodos)){
+                        if(kConexidad(matriz, numero_nodos, visitados, &conexidad)){
+                            printf(YELLOW "El grafo es " BLUE "%d-conexo\n\n\n" RESETCOLOR, conexidad);
+                            
+                            // Finalizacion de ejecucion
+                            end = clock();
+                            double cpu_time = (double)(end - start) / CLOCKS_PER_SEC;
+                            printf(GREEN "Tiempo ejecución: %f" RESETCOLOR, cpu_time);
+                            
+                            break;
+                        }
                         printf(YELLOW "El grafo es " BLUE "%d-conexo\n\n\n" RESETCOLOR, conexidad);
+
+                        // Finalizacion de ejecucion
+                        end = clock();
+                        double cpu_time = (double)(end - start) / CLOCKS_PER_SEC;
+                        printf(GREEN "Tiempo ejecución: %f" RESETCOLOR, cpu_time);
+
                         break;
-                    }
-                    printf(YELLOW "El grafo es " BLUE "%d-conexo\n\n\n" RESETCOLOR, conexidad);
-                    break;
+                    } 
+                    printf(RED "Grafo  0-conexo \n\n\n" RESETCOLOR);
                 }
-                else printf(RED "Grafo  0-conexo \n\n\n" RESETCOLOR);
+
+                // Finalizacion de ejecucion
+                end = clock();
+                double cpu_time = (double)(end - start) / CLOCKS_PER_SEC;
+                printf(GREEN "Tiempo ejecución: %f segundos\n" RESETCOLOR, cpu_time);
+
                 break;
             
             case 5:
@@ -95,7 +124,7 @@ int main(){
                 return 0;
 
             default:
-                printf(RED "¡Número invalido, por favor reingrese!" RESETCOLOR);
+                printf(RED "¡Número invalido, por favor reingrese!\n\n" RESETCOLOR);
                 break;
         }
 

@@ -45,13 +45,6 @@ bool vaciaPila(Pila *pila){
     return pila->indice == -1;
 }
 
-/**
- * @brief Algoritmo de busqueda profunda en grafos (DFS) y verificar conexidad
- * @param grafo Es la lista de adyacencia o matriz de adyacencia
- * @param visitados Es un array con todos los nodos que luego marcaremos como visitados
- * @param numero_nodos Indica el numero de nodos
- * @return Retorna 1 si el grafo es conexo, en caso contrario retorna 0
- */
 int DFS(int **grafo, bool *visitados, int numero_nodos){
     Pila pila;
 

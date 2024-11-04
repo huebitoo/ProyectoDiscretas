@@ -5,14 +5,6 @@
 #include "../include/DFS.h"
 #include "../include/k-conexo.h"
 
-/**
- * @brief Metodo para analizar la k-conexidad de la lista de adyacencia
- * @param grafo Lista de adyacencia
- * @param numero_nodos Numero de nodos
- * @param visitados Lista con los nodos visitados
- * @param conexidad Indica la k-conexidad
- * @return Retorna 0 si es k-conexo, en caso contrario retorna 1
- */
 int kConexidad(int **grafo, const int numero_nodos, bool *visitados, int *conexidad){
     *conexidad = 0;
     cambiarVisitados(visitados, numero_nodos);
@@ -23,9 +15,9 @@ int kConexidad(int **grafo, const int numero_nodos, bool *visitados, int *conexi
                 for(int l = 0; l < numero_nodos; l++){
                     if(modificarVisitados(visitados, i, j, k, l, conexidad)){
                         if(DFS(grafo, visitados, numero_nodos)) // Si es conexo
-                            printf(YELLOW "Grafo conexo con %d, %d, %d, %d siendo %d-regular \n" RESETCOLOR, i, j, k, l, *conexidad);
+                            printf(YELLOW "Grafo " GREEN "conexo" YELLOW " con %d, %d, %d, %d siendo %d-regular \n" RESETCOLOR, i, j, k, l, *conexidad);
                         else {
-                            printf(YELLOW "Grafo no conexo con %d, %d, %d, %d siendo %d-regular \n" RESETCOLOR, i, j, k, l, *conexidad);
+                            printf(YELLOW "Grafo" RED " no conexo" YELLOW " con %d, %d, %d, %d siendo %d-regular \n" RESETCOLOR, i, j, k, l, *conexidad);
                             return 1;
                         }
                         cambiarVisitados(visitados, numero_nodos);
@@ -39,16 +31,6 @@ int kConexidad(int **grafo, const int numero_nodos, bool *visitados, int *conexi
     return 0;    
 }
 
-/**
- * @brief Valida las combinaciones posibles de eliminar nodos
- * @param visitados Lista de visitados
- * @param primer_indice Primer indice
- * @param segundo_indice Segundo indice
- * @param tercer_indice Tercer indice
- * @param cuarto_indice Cuarto indice
- * @param conexidad Indica la conexidad
- * @return Retorna true si es posible al combinacion y false si no lo es
- */
 bool modificarVisitados(bool *visitados, int primer_indice, int segundo_indice, int tercer_indice, int cuarto_indice, int *conexidad){
     if(primer_indice == 0){
         if(segundo_indice == 0){

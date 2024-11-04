@@ -41,4 +41,5 @@ void prepararValoresIniciales(bool **visitados, int *numero_nodos, char *ruta_ar
 
     // Cerrar el archivo
     fclose(archivo);
+    
 }
