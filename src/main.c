@@ -96,12 +96,12 @@ int main(){
                         break;
                     } 
                     printf(RED "Grafo  0-conexo \n\n\n" RESETCOLOR);
-                }
+                } else printf(RED "Grafo  0-conexo \n\n\n" RESETCOLOR);
 
                 // Finalizacion de ejecucion
                 end = clock();
                 double cpu_time = (double)(end - start) / CLOCKS_PER_SEC;
-                printf(GREEN "Tiempo ejecución: %f segundos\n" RESETCOLOR, cpu_time);
+                printf(GREEN "Tiempo ejecución: %f segundos\n\n" RESETCOLOR, cpu_time);
 
                 break;
             
