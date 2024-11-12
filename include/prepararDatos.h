@@ -10,4 +10,10 @@
  */
 void prepararValoresIniciales(bool **visitados, int *numero_nodos, char *ruta_archivo, int ***matriz);
 
+/**
+ * @brief Limpia la lista de los nodos visitados
+ * @param visitados Lista de visitados
+ * @param numero_nodos Numero de nodos
+ * @note Solo se implementó para poder limpiar la lisat de visitados y evitar errores
+ */
 void limpiarVisitados(bool *visitados, const int numero_nodos);
