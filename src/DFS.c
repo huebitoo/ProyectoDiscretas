@@ -49,13 +49,17 @@ int DFS(int **grafo, bool *visitados, int numero_nodos){
     Pila pila;
 
     constructorPila(&pila);
-    insertElemento(&pila, 0);
+
+    if(visitados[0])
+        insertElemento(&pila, 1);
+    else 
+        insertElemento(&pila, 0);
 
     // Mientras no esté vacia la pila
     while(!vaciaPila(&pila)){
         int nodo = quitarElemento(&pila);
         visitados[nodo] = true;
-        
+
         for(int i = 0; grafo[nodo][i] != -1; i++){
             if(!visitados[grafo[nodo][i]])
                 insertElemento(&pila, grafo[nodo][i]);
