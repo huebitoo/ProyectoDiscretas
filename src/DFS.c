@@ -46,6 +46,8 @@ bool vaciaPila(Pila *pila){
 }
 
 int DFS(int **grafo, bool *visitados, int numero_nodos){
+    if (numero_nodos == 1) return 1;
+
     Pila pila;
 
     constructorPila(&pila);

@@ -4,6 +4,7 @@
 #include "../include/validaciones.h"
 
 bool conexidadSimple(int **grafo, const int numero_nodos){
+    if (numero_nodos == 1) return true;
     int contador;
     for(int i = 0; i < numero_nodos; i++){
         contador = 0;
