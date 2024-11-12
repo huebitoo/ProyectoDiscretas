@@ -5,8 +5,3 @@
 4: 5
 5: 4
 6: 1
-
-
-// SEG CORE FAULT
-
-visited = {1, 6, 3, 2 }

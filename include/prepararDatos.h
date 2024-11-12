@@ -9,3 +9,5 @@
  * @note Este metodo se hizo mas que nada para limpiar el main
  */
 void prepararValoresIniciales(bool **visitados, int *numero_nodos, char *ruta_archivo, int ***matriz);
+
+void limpiarVisitados(bool *visitados, const int numero_nodos);

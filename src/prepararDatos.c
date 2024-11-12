@@ -43,3 +43,8 @@ void prepararValoresIniciales(bool **visitados, int *numero_nodos, char *ruta_ar
     fclose(archivo);
     
 }
+
+void limpiarVisitados(bool *visitados, const int numero_nodos){
+    for(int i = 0; i < numero_nodos; i++)
+        visitados[i] = false;
+}

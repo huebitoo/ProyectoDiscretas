@@ -36,6 +36,9 @@ int main(){
 
     // Inicio menú con las selecciones
     while(1){
+        
+        limpiarVisitados(visitados, numero_nodos);
+
         printf(BLUE "\t\tMATRIZ\n" RESETCOLOR);
         printf(YELLOW "(1) Mostrar grafo\n" RESETCOLOR);
         printf(YELLOW "(2) Conexidad\n" RESETCOLOR);
@@ -73,7 +76,7 @@ int main(){
                 clock_t start, end;
                 // Inicio tiempo
                 start = clock();
-
+                
                 if(conexidadSimple(matriz, numero_nodos)){
                     if(DFS(matriz, visitados, numero_nodos)){
                         if(kConexidad(matriz, numero_nodos, visitados, &conexidad)){
@@ -106,6 +109,9 @@ int main(){
                 break;
             
             case 5:
+                liberarMemoria(matriz, numero_nodos);            // Libera la memoria de matriz
+                liberarMemoriaVisitados(visitados); 
+
                 char ruta_prearchivo[MAXBUFFER] = "";
                 char ruta_archivo[MAXBUFFER] = "./grafos/";
 
@@ -117,6 +123,7 @@ int main(){
 
                 // Preparar
                 prepararValoresIniciales(&visitados, &numero_nodos, ruta_archivo, &matriz);
+                
 
                 break;
 
