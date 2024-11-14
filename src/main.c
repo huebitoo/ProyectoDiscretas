@@ -47,7 +47,20 @@ int main(){
         printf(YELLOW "(5) Ingresar grafo\n" RESETCOLOR);
         printf(YELLOW "(6) Salir\n\n" RESETCOLOR);
         printf(YELLOW "Ingrese operación: " RESETCOLOR);
-        scanf("%d", &operacion);
+
+        while (true) {
+            printf(YELLOW "Ingrese operación: " RESETCOLOR);
+            if (scanf("%d", &operacion) != 1) {
+                // Entrada no válida
+                printf(RED "¡Entrada inválida! Por favor ingrese un número.\n" RESETCOLOR);
+                
+                // Limpiar el búfer de entrada
+                int c;
+                while ((c = getchar()) != '\n' && c != EOF) {} // Descarta caracteres hasta el final de línea
+            } else {
+                break; // Entrada válida, salir del bucle
+            }
+        }
 
         system("clear");
 
@@ -129,6 +142,9 @@ int main(){
 
             case 6:
                 return 0;
+            
+            case 7:
+                break;
 
             default:
                 printf(RED "¡Número invalido, por favor reingrese!\n\n" RESETCOLOR);
