@@ -46,7 +46,6 @@ int main(){
         printf(YELLOW "(4) K-conexidad del grafo\n" RESETCOLOR);
         printf(YELLOW "(5) Ingresar grafo\n" RESETCOLOR);
         printf(YELLOW "(6) Salir\n\n" RESETCOLOR);
-        printf(YELLOW "Ingrese operación: " RESETCOLOR);
 
         while (true) {
             printf(YELLOW "Ingrese operación: " RESETCOLOR);

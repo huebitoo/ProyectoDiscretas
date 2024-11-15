@@ -38,7 +38,7 @@ def save_adjacency_list_to_file(adjacency_list, folder):
     print(f"La lista de adyacencia se ha guardado en '{filename}'.")
 
 # Parámetros
-num_vertices = 40  # Número de vértices (puedes cambiarlo)
+num_vertices = 30  # Número de vértices (puedes cambiarlo)
 edge_probability = 0.5  # Probabilidad de que se forme una arista entre dos vértices
 folder = 'grafos'  # Carpeta donde se guardará el archivo
 

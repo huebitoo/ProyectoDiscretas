@@ -14,12 +14,8 @@ int kConexidad(int **grafo, const int numero_nodos, bool *visitados, int *conexi
             for(int k = 0; k < numero_nodos; k++){
                 for(int l = 0; l < numero_nodos; l++){
                     if(modificarVisitados(visitados, i, j, k, l, conexidad)){
-                        if(DFS(grafo, visitados, numero_nodos)) // Si es conexo
-                            printf(YELLOW "Grafo " GREEN "conexo" YELLOW " con %d, %d, %d, %d siendo %d-regular \n" RESETCOLOR, i, j, k, l, *conexidad);
-                        else {
-                            printf(YELLOW "Grafo" RED " no conexo" YELLOW " con %d, %d, %d, %d siendo %d-regular \n" RESETCOLOR, i, j, k, l, *conexidad);
+                        if(!DFS(grafo, visitados, numero_nodos)) // Si es conexo
                             return 1;
-                        }
                         cambiarVisitados(visitados, numero_nodos);
                     }
 
