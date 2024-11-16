@@ -141,9 +141,6 @@ int main(){
 
             case 6:
                 return 0;
-            
-            case 7:
-                break;
 
             default:
                 printf(RED "¡Número invalido, por favor reingrese!\n\n" RESETCOLOR);
