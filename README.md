@@ -3,8 +3,6 @@
 ### Integrantes
 
 - [Javier Alejandro Campos Contreras](https://github.com/huebitoo "Javier Alejandro Campos Contreras") 
-- [Jorge Alejandro Slimming Lagos](https://github.com/JorshSlimming "Jorge Alejandro Slimming Lagos")
-- [Benjamin Alonso Henriquez Cid](https://github.com/ba-hc "Benjamin Alonso Henriquez Cid")
 
 ##
 
